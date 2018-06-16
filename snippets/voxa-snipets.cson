@@ -1,0 +1,164 @@
+'.source.js':
+  'Voxa Help Intent':
+    'body': """
+      ${1:skill}.onIntent('AMAZON.HelpIntent', (${2:alexaEvent}) => {
+        $3
+      });
+    """
+    'prefix': 'helpintentVoxa'
+  'Voxa Intent':
+    'body': """
+      ${1:skill}.onIntent('$2', (${3:alexaEvent}) => {
+        $4
+      });
+    """
+    'prefix': 'onintentVoxa'
+  'Voxa Lambda':
+    'body': """
+      const skill = require('./skill/MainStateMachine');
+
+      exports.handler = skill.lambda();
+    """
+    'prefix': 'lambdaVoxa'
+  'Voxa Launch Intent':
+    'body': """
+      ${1:skill}.onIntent('LaunchIntent', (${2:alexaEvent}) => {
+        $3
+      });
+    """
+    'prefix': 'launchintentVoxa'
+  'Voxa Main State Machine':
+    'body': """
+      const Voxa = require('voxa');
+      const views = require('${1:./views}');
+      const variables = require('${2:./variables}');
+      const states = require('${3:./states}');
+
+      const skill = new Voxa({ variables, views });
+      states.register(skill);
+
+      module.exports = skill;
+    """
+    'prefix': 'mainstatemachineVoxa'
+  'Voxa Repeat Intent':
+    'body': """
+      ${1:skill}.onIntent('AMAZON.RepeatIntent', (${2:alexaEvent}) => {
+        $3
+      });
+    """
+    'prefix': 'repeatintentVoxa'
+  'Voxa Server':
+    'body': """
+      const skill = require('${1:./skill/MainStateMachine}');
+      const config = require('${2:./config}');
+
+      skill.startServer(config.server.port);
+    """
+    'prefix': 'serverVoxa'
+  'Voxa StartOver Intent':
+    'body': """
+      ${1:skill}.onIntent('AMAZON.StartOverIntent', (${2:alexaEvent}) => {
+        $3
+      });
+    """
+    'prefix': 'startoverintentVoxa'
+  'Voxa State':
+    'body': """
+      ${1:skill}.onState('$2', (${3:alexaEvent}) => {
+        $4
+      });
+    """
+    'prefix': 'onstateVoxa'
+  'Voxa ask':
+    'body': """
+      ${1:responseName}: {
+        ask: '${2}',
+        reprompt: '${3}',
+      },
+    """
+    'prefix': 'askVoxa'
+  'Voxa entry Intent':
+    'body': """
+      ${1:skill}.onState('entry', {
+        $2
+      });
+    """
+    'prefix': 'entryVoxa'
+  'Voxa if intent name':
+    'body': """
+      if (alexaEvent.intent.name === '${1}') {
+        ${2}
+      }
+    """
+    'prefix': 'ifintentnameVoxa'
+  'Voxa if no intent':
+    'body': """
+      if (alexaEvent.intent.name === 'AMAZON.NoIntent') {
+        ${1}
+      }
+    """
+    'prefix': 'ifnoVoxa'
+  'Voxa if yes intent':
+    'body': """
+      if (alexaEvent.intent.name === 'AMAZON.YesIntent') {
+        ${1}
+      }
+    """
+    'prefix': 'ifyesVoxa'
+  'Voxa register states function':
+    'body': """
+      exports.register = function register(skill) {
+        ${1}
+      };
+    """
+    'prefix': 'registerVoxa'
+  'Voxa return to':
+    'body': """
+      return { to: '${1}' };
+    """
+    'prefix': 'toVoxa'
+  'Voxa return':
+    'body': """
+      return { reply: '${1}', to: '${2}' };
+    """
+    'prefix': 'replyVoxa'
+  'Voxa say':
+    'body': """
+      ${1:responseName}: {
+        say: '${2}',
+      },
+    """
+    'prefix': 'sayVoxa'
+  'Voxa synonims':
+    'body': """
+      const characters = _.chain(['characterOne', 'characterTwo'])
+        .map(slot => _.get(alexaEvent, `intent.params.${slot}`))
+        .map(_.toLower)
+        .map(slot => LIST_OF_CHARACTERS[slot])
+        .compact()
+        .value();
+    """
+    'prefix': 'synonimsVoxa'
+  'Voxa tell':
+    'body': """
+      ${1:responseName}: {
+        tell: '${2}',
+      },
+    """
+    'prefix': 'tellVoxa'
+  'Voxa variables':
+    'body': """
+      module.exports = {
+        ${1:variableName}: model => model.${1:variableName},${2}
+      };
+    """
+    'prefix': 'variablesVoxa'
+  'Voxa views function':
+    'body': """
+      const views = (function views() {
+        return {
+          ${1}
+        };
+      }());
+    """
+    'prefix': 'viewsVoxa'
