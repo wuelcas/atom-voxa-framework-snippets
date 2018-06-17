@@ -1,6 +1,6 @@
 {
   "name": "voxa-framework-snippets",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Code snippets to speed up your Alexa skill development using the Voxa framework",
   "keywords": [
     "Voxa",
